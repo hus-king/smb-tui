@@ -38,9 +38,35 @@ jobs:
           mv dist/smb-tui dist/smb-tui-${TAG}-linux-x86_64
           ls -lh dist/
 
+      - name: Build deb package
+        run: |
+          TAG=${GITHUB_REF_NAME}
+          VERSION=${TAG#v}
+          PKG=smb-tui_${VERSION}_amd64
+
+          mkdir -p ${PKG}/usr/local/bin
+          mkdir -p ${PKG}/DEBIAN
+
+          cp dist/smb-tui-${TAG}-linux-x86_64 ${PKG}/usr/local/bin/smb-tui
+          chmod 755 ${PKG}/usr/local/bin/smb-tui
+
+          cat > ${PKG}/DEBIAN/control <<EOF
+          Package: smb-tui
+          Version: ${VERSION}
+          Architecture: amd64
+          Maintainer: husking
+          Depends: samba-common-bin
+          Description: Terminal UI and CLI for managing Samba (smb.conf) configuration and users
+          EOF
+
+          dpkg-deb --build ${PKG}
+          ls -lh *.deb
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/smb-tui-*
+          files: |
+            dist/smb-tui-*
+            *.deb
           generate_release_notes: true
           fail_on_unmatched_files: true
