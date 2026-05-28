@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install pyinstaller textual
+
+      - name: Build binary
+        run: pyinstaller smb-tui.spec
+
+      - name: Rename binary with version
+        run: |
+          TAG=${GITHUB_REF_NAME}
+          mv dist/smb-tui dist/smb-tui-${TAG}-linux-x86_64
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/smb-tui-*
+          generate_release_notes: true
