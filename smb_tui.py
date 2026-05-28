@@ -93,7 +93,7 @@ def _check_writable(path):
 # ---------------------------------------------------------------------------
 
 
-class ConfirmModal(ModalScreen[bool]):
+class ConfirmModal(ModalScreen):
     """A generic yes/no confirmation dialog."""
 
     BINDINGS = [Binding("escape", "dismiss_no", "No")]
@@ -119,7 +119,7 @@ class ConfirmModal(ModalScreen[bool]):
         self.dismiss(False)
 
 
-class InfoModal(ModalScreen[None]):
+class InfoModal(ModalScreen):
     """Display informational text (validation output, etc.)."""
 
     BINDINGS = [Binding("escape", "dismiss_ok", "OK")]
@@ -143,7 +143,7 @@ class InfoModal(ModalScreen[None]):
         self.dismiss()
 
 
-class EditParamModal(ModalScreen[tuple[str, str] | None]):
+class EditParamModal(ModalScreen):
     """Add or edit a single parameter on a share."""
 
     BINDINGS = [Binding("escape", "dismiss_cancel", "Cancel")]
@@ -184,7 +184,7 @@ class EditParamModal(ModalScreen[tuple[str, str] | None]):
         self.dismiss(None)
 
 
-class AddShareModal(ModalScreen[bool]):
+class AddShareModal(ModalScreen):
     """Form to create or edit a share.
     If editing, pass edit_name to pre-fill fields and update instead of add."""
 
@@ -336,7 +336,7 @@ class AddShareModal(ModalScreen[bool]):
         self.dismiss(False)
 
 
-class SudoPasswordModal(ModalScreen[str | None]):
+class SudoPasswordModal(ModalScreen):
     """Prompt for the sudo password (cached for the session)."""
 
     BINDINGS = [Binding("escape", "dismiss_cancel", "Cancel")]
@@ -372,7 +372,7 @@ class SudoPasswordModal(ModalScreen[str | None]):
 # ---------------------------------------------------------------------------
 
 
-class ShareDetailScreen(Screen[None]):
+class ShareDetailScreen(Screen):
     """Show all parameters for a single share."""
 
     BINDINGS = [
@@ -501,7 +501,7 @@ class ShareDetailScreen(Screen[None]):
         self._refresh()
 
 
-class UserPasswordModal(ModalScreen[tuple[str, str] | None]):
+class UserPasswordModal(ModalScreen):
     """Modal to enter and confirm a password."""
 
     BINDINGS = [Binding("escape", "dismiss_cancel", "Cancel")]
@@ -545,7 +545,7 @@ class UserPasswordModal(ModalScreen[tuple[str, str] | None]):
         self.dismiss(None)
 
 
-class UserListScreen(Screen[None]):
+class UserListScreen(Screen):
     """Screen listing all Samba users."""
 
     BINDINGS = [
@@ -697,7 +697,7 @@ class UserListScreen(Screen[None]):
         self.app.push_screen(UserPasswordModal(name, action="change"), on_password)
 
 
-class AddUserModal(ModalScreen[tuple[str, str] | None]):
+class AddUserModal(ModalScreen):
     """Form to add a new Samba user (username + password)."""
 
     BINDINGS = [Binding("escape", "dismiss_cancel", "Cancel")]
@@ -740,7 +740,7 @@ class AddUserModal(ModalScreen[tuple[str, str] | None]):
         self.dismiss(None)
 
 
-class MainListScreen(Screen[None]):
+class MainListScreen(Screen):
     """Primary screen listing all shares."""
 
     BINDINGS = [
