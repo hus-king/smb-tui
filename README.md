@@ -17,7 +17,8 @@ Both tools edit `smb.conf` in-place while preserving comments, indentation, and 
 - Samba (`smbpasswd`, `pdbedit`, `testparm`)
 - [Textual](https://github.com/Textualize/textual) (TUI only)
 
-```
+```bash
+sudo apt install samba samba-common-bin -y
 pip install textual
 ```
 

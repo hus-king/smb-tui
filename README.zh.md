@@ -17,7 +17,8 @@
 - Samba（`smbpasswd`、`pdbedit`、`testparm`）
 - [Textual](https://github.com/Textualize/textual)（仅 TUI 需要）
 
-```
+```bash
+sudo apt install samba samba-common-bin -y
 pip install textual
 ```
 
