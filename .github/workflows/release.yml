@@ -18,8 +18,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: |
-          pip install pyinstaller textual
+        run: pip install pyinstaller textual
 
       - name: Build binary
         run: pyinstaller smb-tui.spec
@@ -28,9 +27,11 @@ jobs:
         run: |
           TAG=${GITHUB_REF_NAME}
           mv dist/smb-tui dist/smb-tui-${TAG}-linux-x86_64
+          ls -lh dist/
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: dist/smb-tui-*
           generate_release_notes: true
+          fail_on_unmatched_files: true
