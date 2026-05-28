@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """smb-tui - Interactive terminal UI for Samba configuration management."""
 
+from __future__ import annotations
+
 import argparse
 import os
 import shutil
