@@ -13,7 +13,8 @@
 
 ## 环境要求
 
-- Python 3.10+
+- Ubuntu 20.04+（或其他 glibc 2.31+ 的 Linux 发行版）
+- Python 3.8+
 - Samba（`smbpasswd`、`pdbedit`、`testparm`）
 - [Textual](https://github.com/Textualize/textual)（仅 TUI 需要）
 

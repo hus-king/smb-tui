@@ -13,7 +13,8 @@ Both tools edit `smb.conf` in-place while preserving comments, indentation, and 
 
 ## Requirements
 
-- Python 3.10+
+- Ubuntu 20.04+ (or any Linux with glibc 2.31+)
+- Python 3.8+
 - Samba (`smbpasswd`, `pdbedit`, `testparm`)
 - [Textual](https://github.com/Textualize/textual) (TUI only)
 
