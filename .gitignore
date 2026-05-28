@@ -1,0 +1,19 @@
+# Build artifacts
+build/
+dist/
+*.spec
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+*.egg-info/
+
+# Samba config backups
+*.bak.*
+
+# Editor / OS
+.DS_Store
+*.swp
+*.swo
